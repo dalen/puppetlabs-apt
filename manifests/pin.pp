@@ -8,7 +8,8 @@ define apt::pin(
   $priority   = 0,
   $release    = '',
   $origin     = '',
-  $originator = ''
+  $originator = '',
+  $version    = ''
 ) {
 
   include apt::params
@@ -25,6 +26,8 @@ define apt::pin(
     $pin = "origin \"${origin}\""
   } elsif $originator != '' {
     $pin = "release o=${originator}"
+  } elsif $version != '' {
+    $pin = "version ${version}"
   } else {
     $pin = "release a=${name}"
   }
